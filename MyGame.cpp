@@ -10,7 +10,7 @@ const int ts = 25;
 
 int q = 0;
 bool life = true;
-
+//52
 String TileMap[H] = {
 "AAAAAAAAAAAAAAAAAAA",
 "A1       A       2A",
@@ -142,7 +142,7 @@ public:
 
 			ti = 0;
 		}
-
+		//Kurwa bober
 		for (int i = 0; i < 4; i++) {
 			if (TileMap[newy[i]][newx[i]] == ' ' || TileMap[newy[i]][newx[i]] == 'B' ||
 				TileMap[newy[i]][newx[i]] == 'C') {
