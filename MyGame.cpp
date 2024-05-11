@@ -10,7 +10,7 @@ const int ts = 25;
 
 int q = 0;
 bool life = true;
-
+//52
 String TileMap[H] = {
 "AAAAAAAAAAAAAAAAAAA",
 "A1       A       2A",
