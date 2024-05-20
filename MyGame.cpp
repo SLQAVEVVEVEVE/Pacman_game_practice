@@ -4,7 +4,7 @@
 using namespace sf;
 
 const int H = 21;
-const int W = 19;
+const int W = 48;
 
 const int ts = 25;
 
@@ -12,34 +12,34 @@ int q = 0;
 bool life = true;
 //52
 String TileMap[H] = {
-"AAAAAAAAAAAAAAAAAAA",
-"A1       A       2A",
-"A AA AAA A AAA AA A",
-"A        A        A",
-"A AA A AAAAA A AA A",
-"A    A   A   A    A",
-"AAAA AAA A AAA AAAA",
-"BBBA A       A ABBB",
-"AAAA A AAAAA A AAAA",
-"BBBB   ABBBA   BBBB",
-"AAAA A AAAAA A AAAA",
-"BBBA A       A ABBB",
-"AAAA A AAAAA A AAAA",
-"A        A        A",
-"A AA AAA A AAA AA A",
-"A  A     C     A  A",
-"AA A A AAAAA A A AA",
-"A    A   A   A    A",
-"A AAAAAA A AAAAAA A",
-"A3               4A",
-"AAAAAAAAAAAAAAAAAAA",
+"BBBBBBBBBBBBBBBBBBBBBBBaAAAAAAAAAAAAAAAAAAAAKBBB",//0
+"BBBBBBBBBBBBBBBBBBBBBBaK        aK        aKBBBB",//1
+"BBBBBBBBBBBBBBBBBBBBBaK aK aPK aK aPK aK aKBBBBB",//2
+"BBBBBBBBBBBBBBBBBBBBaK        aK        aKBBBBBB",//3
+"BBBBBBBBBBBBBBBBBBBaK aK aK aPPK aK aK aKBBBBBBB",//4
+"BBBBBBBBBBBBBBBBBBaK aK     aK     aK aKBBBBBBBB",//5
+"BBBBBBBBBBBBBBBBBaAAAK aPK aK aPK aAAAKBBBBBBBBB",//6
+"BBBBBBBBBBBBBBBBBBBaK aPK    aPK aKBBBBBBBBBBBBB",//7
+"BBBBBBBBBBBBBBBaAAAK aPK aK aPK aAAAKBBBBBBBBBBB",//8
+"BBBBBBBBBBBBBBBBB   aK      aK   BBBBBBBBBBBBBBB",//9
+"BBBBBBBBBBBBBaAAAK aK aAAK aK aAAAKBBBBBBBBBBBBB",//10
+"BBBBBBBBBBBBBBBaK aK      aK aKBBBBBBBBBBBBBBBBB",//11
+"BBBBBBBBBBBaAAAK aK aPPK aK aAAAKBBBBBBBBBBBBBBB",//12
+"BBBBBBBBBBaK        aK        aKBBBBBBBBBBBBBBBB",//13
+"BBBBBBBBBaK aK aPK aK aPK aK aKBBBBBBBBBBBBBBBBB",//14
+"BBBBBBBBaK    aK  aK  aK    aKBBBBBBBBBBBBBBBBBB",//15
+"BBBBBBBaK aK aK aPPK aK aK aKBBBBBBBBBBBBBBBBBBB",//16
+"BBBBBBaK    aK  aK  aK    aKBBBBBBBBBBBBBBBBBBBB",//17
+"BBBBBaK aPPPPK aK aPPPPK aKBBBBBBBBBBBBBBBBBBBBB",//18
+"BBBBaK                  aKBBBBBBBBBBBBBBBBBBBBBB",//19
+"BBBaAAAAAAAAAAAAAAAAAAAAKBBBBBBBBBBBBBBBBBBBBBBBB",//20
 };
 
 class Player {
 public:
 	float frame = 0;
-	int x = 9, y = 15;
-	int newx = 0, newy = 0;
+	int x = 22, y = 9;
+	int newx = 25, newy = 9;
 	int rotate = 1, ti = 0;
 
 	void update() {
@@ -52,20 +52,30 @@ public:
 			switch (rotate)
 			{
 			case 1:
-				if (TileMap[y][newx + 1] != 'A')
+				if (TileMap[y][newx + 1] != 'A'&& TileMap[y][newx + 1] != 'K' && TileMap[y][newx + 1] != 'P'
+					&& TileMap[y][newx + 1] != 'a')
 					newx += 1;
 				break;
 			case 2:
-				if (TileMap[y][newx - 1] != 'A')
+				if (TileMap[y][newx - 1] != 'A' && TileMap[y][newx - 1] != 'K' && TileMap[y][newx - 1] != 'P' 
+					&& TileMap[y][newx - 1] != 'a')
 					newx -= 1;
 				break;
 			case 3:
-				if (TileMap[newy - 1][x] != 'A')
+				if (TileMap[newy - 1][x+1] != 'A' && TileMap[newy - 1][x+1] != 'K' && TileMap[newy - 1][x+1] != 'P'
+					&& TileMap[newy - 1][x+1] != 'a')
+				{
 					newy -= 1;
+					newx += 1;
+				}
 				break;
 			case 4:
-				if (TileMap[newy + 1][x] != 'A')
+				if (TileMap[newy + 1][x-1] != 'A' && TileMap[newy + 1][x-1] != 'K' && TileMap[newy + 1][x-1] != 'P' 
+					&& TileMap[newy + 1][x-1] != 'a')
+				{
 					newy += 1;
+					newx -= 1;
+				}
 				break;
 			}
 
@@ -88,11 +98,11 @@ public:
 			y = newy;
 		}
 
-		if (newy == 9 && (newx == 0 || newx == 18)) {
-			if (newx == 0)
-				newx = 17;
+		if (newy == 9 && (newx == 13 || newx == 35)) {
+			if (newx == 13)
+				newx = 34;
 			else
-				newx = 1;
+				newx = 14;
 
 			TileMap[y][x] = 'B';
 			TileMap[newy][newx] = 'C';
@@ -195,7 +205,7 @@ int main() {
 	RenderWindow window(VideoMode(W * ts, H * ts), "Maze!");
 
 	Texture t;
-	t.loadFromFile("source/title1.png");
+	t.loadFromFile("source/title_2.png");
 	Sprite plat(t);
 
 	Texture yw;
@@ -237,26 +247,32 @@ int main() {
 
 		if (q < 171 && life) {
 			p.update();
-			en.update();
+			//en.update();
 		}
 		window.clear(Color::Black);
 
 		for (int i = 0; i < H; i++)
 			for (int j = 0; j < W; j++) {
-				if (TileMap[i][j] == 'A')
+				if (TileMap[i][j] == 'P')
 					plat.setTextureRect(IntRect(0, 0, ts, ts));
-				if (TileMap[i][j] == 'C')
-					plat.setTextureRect(IntRect(ts * int(p.frame), ts * p.rotate, ts, ts));
-				if (TileMap[i][j] == ' ')
+				if (TileMap[i][j] == 'A')
 					plat.setTextureRect(IntRect(ts, 0, ts, ts));
-				if (TileMap[i][j] == '1')
+				if (TileMap[i][j] == 'a')
+					plat.setTextureRect(IntRect(ts, ts, ts, ts));
+				if (TileMap[i][j] == 'K')
+					plat.setTextureRect(IntRect(0, ts, ts, ts));
+				if (TileMap[i][j] == 'C')
+					plat.setTextureRect(IntRect(ts * (int(p.frame)), ts * (p.rotate+1), ts, ts));
+				if (TileMap[i][j] == ' ')
+					plat.setTextureRect(IntRect(2*ts, 0, ts, ts));
+				/*if (TileMap[i][j] == '1')
 					plat.setTextureRect(IntRect(ts * 5, ts * en.rotate[0], ts, ts));
 				if (TileMap[i][j] == '2')
 					plat.setTextureRect(IntRect(ts * 5, ts * en.rotate[1], ts, ts));
 				if (TileMap[i][j] == '3')
 					plat.setTextureRect(IntRect(ts * 5, ts * en.rotate[2], ts, ts));
 				if (TileMap[i][j] == '4')
-					plat.setTextureRect(IntRect(ts * 5, ts * en.rotate[3], ts, ts));
+					plat.setTextureRect(IntRect(ts * 5, ts * en.rotate[3], ts, ts));*/
 				if (TileMap[i][j] == 'B')
 					continue;
 
