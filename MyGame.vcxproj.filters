@@ -43,5 +43,14 @@
     <Image Include="source\title_2.png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
+    <Image Include="source\title_2_1.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="source\title_2_2.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="source\title_2_3.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
   </ItemGroup>
 </Project>

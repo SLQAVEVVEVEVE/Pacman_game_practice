@@ -175,6 +175,9 @@ gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <Image Include="source\title.png" />
     <Image Include="source\title1.png" />
     <Image Include="source\title_2.png" />
+    <Image Include="source\title_2_1.png" />
+    <Image Include="source\title_2_2.png" />
+    <Image Include="source\title_2_3.png" />
     <Image Include="source\youlose.png" />
     <Image Include="source\youwin.png" />
   </ItemGroup>
